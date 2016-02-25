@@ -23,3 +23,20 @@ function getBarcodeQuantity(inputs) {
   }
   return barcodes;
 }
+
+function getCartDetail(barcodes, itemList) {
+  var res = [];
+
+  for(var barcode in barcodes) {
+    var count = barcodes[barcode];
+    for(var i=0; i<itemList.length; i++) {
+      if(itemList[i].barcode === barcode) {
+        res.push({
+          'item': itemList[i],
+          'count': count
+        });
+      }
+    }
+  }
+  return res;
+}
