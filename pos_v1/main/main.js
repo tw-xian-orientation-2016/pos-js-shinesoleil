@@ -85,15 +85,15 @@ function printReceipt(cartItemDetails) {
     totalSavedMoney += cartItemDetail.savedMoney;
     console.log(
       '名称：' + cartItem.item.name+ '，数量：' + cartItem.count +
-      '(' + cartItem.item.unit + ')' + '，单价：' + cartItem.item.price +
-      '(元)，小计：' + cartItemDetail.subtotal+ '(元)\n'
+      '(' + cartItem.item.unit + ')' + '，单价：' + cartItem.item.price.toFixed(2) +
+      '(元)，小计：' + cartItemDetail.subtotal.toFixed(2)+ '(元)\n'
     );
   }
 
   console.log(
     '----------------------\n' +
-    '总计：'+ total +'(元)\n' +
-    '节省：'+ totalSavedMoney +'(元)\n' +
+    '总计：'+ total.toFixed(2) +'(元)\n' +
+    '节省：'+ totalSavedMoney.toFixed(2) +'(元)\n' +
     '**********************'
   );
 }
