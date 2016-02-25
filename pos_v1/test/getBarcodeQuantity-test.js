@@ -1,5 +1,5 @@
 describe('getBarcodeQuantity test', function() {
-  inputs = [
+  var inputs = [
     'ITEM000001',
     'ITEM000001',
     'ITEM000001',
@@ -11,7 +11,7 @@ describe('getBarcodeQuantity test', function() {
     'ITEM000005'
   ];
 
-  outputs =
+  var outputs =
   {
     'ITEM000001': 5,
     'ITEM000003': 2,
