@@ -47,21 +47,25 @@ function getSubtotal(cartItems, promotions) {
 
   for(var i=0; i<cartItems.length; i++) {
     var cartItem = cartItems[i];
+    var subtotal;
+    var originalSubtotal;
     if(promoBarcodes.indexOf(cartItem.item.barcode) !== -1) {
       var quantityToPay = cartItem.count - parseInt(cartItem.count/3);
-      var subtotal = quantityToPay * cartItem.item.price;
-      console.log(quantityToPay);
+      subtotal = quantityToPay * cartItem.item.price;
+      originalSubtotal = cartItem.count* cartItem.item.price;
 
       res.push({
         cartItem:cartItem,
-        subtotal: subtotal
+        subtotal: subtotal,
+        savedMoney: originalSubtotal - subtotal
       })
     }
     else{
-      var subtotal = cartItem.count * cartItem.item.price;
+      subtotal = cartItem.count * cartItem.item.price;
       res.push({
         cartItem: cartItem,
-        subtotal: subtotal
+        subtotal: subtotal,
+        savedMoney: 0
       })
     }
   }
