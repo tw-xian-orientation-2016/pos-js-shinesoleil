@@ -42,7 +42,8 @@ describe('getSubtotal test', function() {
         },
         count: 5
       },
-      subtotal: 12
+      subtotal: 12,
+      savedMoney: 3
     },
     {
       cartItem: {
@@ -54,7 +55,8 @@ describe('getSubtotal test', function() {
         },
         count: 2
       },
-      subtotal: 30
+      subtotal: 30,
+      savedMoney: 0
     },
     {
       cartItem: {
@@ -66,7 +68,8 @@ describe('getSubtotal test', function() {
         },
         count: 3
       },
-      subtotal: 9
+      subtotal: 9,
+      savedMoney: 4.5
     }
   ];
 

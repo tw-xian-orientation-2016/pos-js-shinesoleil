@@ -71,3 +71,30 @@ function getSubtotal(cartItems, promotions) {
   }
   return res;
 }
+
+function printReceipt(cartItemDetails) {
+  var total = 0;
+  var totalSavedMoney = 0;
+
+  console.log('***<没钱赚商店>收据***\n');
+  for(var i=0; i<cartItemDetails.length; i++) {
+    var cartItemDetail = cartItemDetails[i];
+    var cartItem = cartItemDetail.cartItem;
+
+    total += cartItemDetail.subtotal;
+    totalSavedMoney += cartItemDetail.savedMoney;
+    console.log(
+      '名称：' + cartItem.item.name+ '，数量：' + cartItem.count +
+      '(' + cartItem.item.unit + ')' + '，单价：' + cartItem.item.price +
+      '(元)，小计：' + cartItemDetail.subtotal+ '(元)\n'
+    );
+  }
+
+  console.log(
+    '----------------------\n' +
+    '总计：'+ total +'(元)\n' +
+    '节省：'+ totalSavedMoney +'(元)\n' +
+    '**********************'
+  );
+}
+
