@@ -40,3 +40,30 @@ function getCartDetail(barcodes, itemList) {
   }
   return res;
 }
+
+function getSubtotal(cartItems, promotions) {
+  var res = [];
+  var promoBarcodes = promotions[0].barcodes;
+
+  for(var i=0; i<cartItems.length; i++) {
+    var cartItem = cartItems[i];
+    if(promoBarcodes.indexOf(cartItem.item.barcode) !== -1) {
+      var quantityToPay = cartItem.count - parseInt(cartItem.count/3);
+      var subtotal = quantityToPay * cartItem.item.price;
+      console.log(quantityToPay);
+
+      res.push({
+        cartItem:cartItem,
+        subtotal: subtotal
+      })
+    }
+    else{
+      var subtotal = cartItem.count * cartItem.item.price;
+      res.push({
+        cartItem: cartItem,
+        subtotal: subtotal
+      })
+    }
+  }
+  return res;
+}
