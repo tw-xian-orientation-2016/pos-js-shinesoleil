@@ -19,7 +19,7 @@ function getBarcodeQuantity(tags) {
   return barcodesCount;
 }
 
-function getCartDetail(barcodesCount, itemList) {
+function getCartItem(barcodesCount, itemList) {
   var cartItems = [];
 
   for(var barcode in barcodesCount) {
@@ -37,7 +37,7 @@ function getCartDetail(barcodesCount, itemList) {
   return cartItems;
 }
 
-function getSubtotal(cartItems, promotions) {
+function getCartItemDetails(cartItems, promotions) {
   var res = [];
   var promoBarcodes = promotions[0].barcodes;
 
@@ -99,8 +99,8 @@ function printReceipt(inputs) {
   var promotions = loadPromotions();
 
   var barcodes =  getBarcodeQuantity(inputs);
-  var cartItems = getCartDetail(barcodes, allItems);
-  var cartItemsDetail = getSubtotal(cartItems, promotions);
+  var cartItems = getCartItem(barcodes, allItems);
+  var cartItemsDetail = getCartItemDetails(cartItems, promotions);
   printDetail(cartItemsDetail);
 }
 

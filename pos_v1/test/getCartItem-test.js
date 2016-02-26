@@ -1,4 +1,4 @@
-describe('getCartDetail test', function() {
+describe('getCartItem test', function() {
   var inputs1 =
   {
     'ITEM000001': 5,
@@ -40,6 +40,6 @@ describe('getCartDetail test', function() {
   ];
 
   it('convert barcodes to item details ', function() {
-    expect(getCartDetail(inputs1, inputs2)).toEqual(outputs);
+    expect(getCartItem(inputs1, inputs2)).toEqual(outputs);
   })
 });
