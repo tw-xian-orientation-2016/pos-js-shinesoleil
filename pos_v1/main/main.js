@@ -38,35 +38,25 @@ function getCartItem(barcodesCount, itemList) {
 }
 
 function getCartItemDetails(cartItems, promotions) {
-  var res = [];
+  var cartItemDetail = [];
   var promoBarcodes = promotions[0].barcodes;
 
-  for(var i=0; i<cartItems.length; i++) {
-    var cartItem = cartItems[i];
+  cartItems.forEach(function(currentCartItem) {
     var subtotal;
     var originalSubtotal;
+    var quantityToPay = currentCartItem.count - parseInt(currentCartItem.count/3);
 
-    if(promoBarcodes.indexOf(cartItem.item.barcode) !== -1) {
-      var quantityToPay = cartItem.count - parseInt(cartItem.count/3);
-      subtotal = quantityToPay * cartItem.item.price;
-      originalSubtotal = cartItem.count* cartItem.item.price;
+    subtotal = quantityToPay * currentCartItem.item.price;
+    originalSubtotal = currentCartItem.item.price * currentCartItem.count;
 
-      res.push({
-        cartItem:cartItem,
-        subtotal: subtotal,
-        savedMoney: originalSubtotal - subtotal
-      })
-    }
-    else{
-      subtotal = cartItem.count * cartItem.item.price;
-      res.push({
-        cartItem: cartItem,
-        subtotal: subtotal,
-        savedMoney: 0
-      })
-    }
-  }
-  return res;
+    cartItemDetail.push({
+      cartItem: currentCartItem,
+      subtotal: subtotal,
+      savedMoney: originalSubtotal - subtotal
+    })
+  });
+
+  return cartItemDetail;
 }
 
 function printDetail(cartItemDetails) {
