@@ -1,34 +1,29 @@
-function getBarcodeQuantity(inputs) {
-  var inputsInOrder = inputs.sort();
-  var barcodes = {};
+function getBarcodeQuantity(tags) {
+  var orderedTags = tags.sort();
+  var barcodesCount = {};
 
-  for(var i=0; i<inputsInOrder.length; i++) {
-    var barcode = inputsInOrder[i];
-    var number;
+  orderedTags.forEach(function(currentTag) {
+    var count;
+    var barcodePartInTag = currentTag.split('-')[0];
+    var numberPartInTag = parseFloat(currentTag.split('-')[1]);
 
-    if(barcode.indexOf('-') !== -1) {
-      number = parseInt(barcode.split('-')[1]);
-      barcode = barcode.split('-')[0];
+    count = numberPartInTag || 1;
+    if(!barcodesCount[barcodePartInTag]) {
+      barcodesCount[barcodePartInTag] = count;
     }
     else {
-      number = 1;
+      barcodesCount[barcodePartInTag] += count;
     }
+  });
 
-    if(!barcodes[barcode]) {
-      barcodes[barcode] = number;
-    }
-    else {
-      barcodes[barcode] += number;
-    }
-  }
-  return barcodes;
+  return barcodesCount;
 }
 
-function getCartDetail(barcodes, itemList) {
+function getCartDetail(barcodesCount, itemList) {
   var res = [];
 
-  for(var barcode in barcodes) {
-    var count = barcodes[barcode];
+  for(var barcode in barcodesCount) {
+    var count = barcodesCount[barcode];
     for(var i=0; i<itemList.length; i++) {
       if(itemList[i].barcode === barcode) {
         res.push({
@@ -107,3 +102,5 @@ function printReceipt(inputs) {
   var cartItemsDetail = getSubtotal(cartItems, promotions);
   printDetail(cartItemsDetail);
 }
+
+
