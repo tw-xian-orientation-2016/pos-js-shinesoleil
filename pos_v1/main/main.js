@@ -20,20 +20,21 @@ function getBarcodeQuantity(tags) {
 }
 
 function getCartDetail(barcodesCount, itemList) {
-  var res = [];
+  var cartItems = [];
 
   for(var barcode in barcodesCount) {
     var count = barcodesCount[barcode];
-    for(var i=0; i<itemList.length; i++) {
-      if(itemList[i].barcode === barcode) {
-        res.push({
-          'item': itemList[i],
+    itemList.forEach(function(item) {
+      if(item.barcode === barcode) {
+        cartItems.push({
+          'item': item,
           'count': count
         });
       }
-    }
+    });
   }
-  return res;
+
+  return cartItems;
 }
 
 function getSubtotal(cartItems, promotions) {
