@@ -52,6 +52,9 @@ describe('printReceipt test', function() {
     '**********************';
 
   it('prints a receipt', function() {
-    expect(printReceipt(inputs)).toEqual(outputs);
+    spyOn(console, 'log');
+
+    printDetail(inputs);
+    expect(console.log).toHaveBeenCalledWith(outputs);
   })
 });
