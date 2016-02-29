@@ -1,4 +1,4 @@
-describe('getCartItemDetails test', function() {
+describe('getReceiptItems test', function() {
   var inputs1 = [
     {
       item:{
@@ -74,6 +74,6 @@ describe('getCartItemDetails test', function() {
   ];
 
   it("add subtotal property", function() {
-    expect(getCartItemDetails(inputs1, inputs2)).toEqual(outputs);
+    expect(getReceiptItems(inputs1, inputs2)).toEqual(outputs);
   });
 });
